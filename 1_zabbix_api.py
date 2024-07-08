@@ -252,7 +252,8 @@ def get_history_81_172():
                 json.dump(items, f, indent=4)
 
     for item in tqdm(items_list, total=len(items_list)):
-        history = get_history(ZABBIX_172_URL, AUTHEN_TOKEN_172, item["itemid"])
+        history = get_history(
+            ZABBIX_172_URL, AUTHEN_TOKEN_172, item["itemid"], limit=5000)
         if history:
             with open(f"210.152.81.172/item_history_{item['itemid']}.json", "w") as f:
                 json.dump(history, f, indent=4)
@@ -283,7 +284,8 @@ def get_trend_81_172():
                 json.dump(items, f, indent=4)
 
     for item in tqdm(items_list, total=len(items_list)):
-        trend = get_trend(ZABBIX_172_URL, AUTHEN_TOKEN_172, item["itemid"])
+        trend = get_trend(ZABBIX_172_URL, AUTHEN_TOKEN_172,
+                          item["itemid"], limit=5000)
         if trend:
             with open(f"210.152.81.172/item_trend_{item['itemid']}.json", "w") as f:
                 json.dump(trend, f, indent=4)
@@ -293,3 +295,4 @@ def get_trend_81_172():
 
 # get_trend_99_139()
 get_trend_81_172()
+# get_history_81_172()
